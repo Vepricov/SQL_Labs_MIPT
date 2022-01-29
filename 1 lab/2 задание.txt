@@ -1,0 +1,8 @@
+/*Выбрать название и город отдела, в котором разница в зарплатах менеджера и сотрудников более 1500*/
+
+select DISTINCT DEPARTMENT.name, LOCATION.regional_group 
+from DEPARTMENT 
+join LOCATION on DEPARTMENT.location_id = LOCATION.location_id 
+join EMPLOYEE as a on a.department_id = DEPARTMENT.department_id
+join EMPLOYEE as b on a.manager_id = b.employee_id
+where (ABS(a.salary - b.salary) > 1500 and a.department_id = b.department_id)

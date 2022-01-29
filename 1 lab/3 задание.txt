@@ -1,0 +1,8 @@
+/*Расположить отделы по среднему стажу работника в порядке убывания, вывести их города и количество сотрудников.*/
+
+select DEPARTMENT.name,LOCATION.regional_group,count(EMPLOYEE.employee_id) as 'кол - во работников',avg (DATEDIFF(DAY,EMPLOYEE.hire_date,CURRENT_TIMESTAMP)) as 'средний стаж работника'
+from DEPARTMENT 
+join LOCATION on LOCATION.location_id = DEPARTMENT.location_id
+left join EMPLOYEE on EMPLOYEE.department_id = DEPARTMENT.department_id
+group by DEPARTMENT.name, LOCATION.regional_group
+order by avg (DATEDIFF(DAY,EMPLOYEE.hire_date,CURRENT_TIMESTAMP)) DESC

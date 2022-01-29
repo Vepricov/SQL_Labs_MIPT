@@ -1,0 +1,7 @@
+/*Выбрать объемы продаж всех товаров, в названии которых присутствует 'WIFF'*/
+
+select sum(ITEM.total) as 'объем продаж', PRODUCT.description 
+from ITEM
+join PRODUCT on ITEM.product_id = product.product_id
+where PRODUCT.description like '%WIFF%'
+group by PRODUCT.description

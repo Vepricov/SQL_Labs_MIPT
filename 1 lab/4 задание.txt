@@ -1,0 +1,6 @@
+/*Выбрать список клиентов, среднюю сумму покупок за год, их количество - для клиентов осуществляющих покупки.*/
+
+select CUSTOMER.name, AVG(SALES_ORDER.total/DATEDIFF(year,SALES_ORDER.order_date,CURRENT_TIMESTAMP)) AS 'средняя сумма покупок за год', COUNT(SALES_ORDER.order_id) AS 'кол-во покупок за год'
+from CUSTOMER 
+join SALES_ORDER on CUSTOMER.customer_id = SALES_ORDER.customer_id
+group by CUSTOMER.name
